@@ -1,5 +1,9 @@
+/**
+ * Calcul du montant net de la commande
+ */
 trigger CalculMontant on Order (before update) {
 	
-	Order newOrder= trigger.new[0];
-	newOrder.NetAmount__c = newOrder.TotalAmount - newOrder.ShipmentCost__c;
+	for(Order order : trigger.new){
+		order.NetAmount__c = order.TotalAmount - order.ShipmentCost__c;
+	}
 }
